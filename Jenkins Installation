@@ -1,0 +1,50 @@
+Steps to Create a Jenkins Server
+
+Step 1: Launch an Ubuntu Instance
+
+Log in to your AWS Account.
+Click on "Launch Instance."
+* Configure your instance:
+* Name your instance.
+* Select an Ubuntu AMI from the list.
+* Choose the key pair you created for SSH access.
+* Edit Network Settings:
+* Click on "Edit" for network settings.
+* Add a security group rule to allow traffic on port 8080.
+* Launch the Instance: Click the "Launch" button to create your instance.
+
+
+Step 2: Connect and Set Up Your Instance
+Connect to the Instance:
+* Select your created instance.
+* Click on "Connect" and choose the option to connect directly to the terminal.
+Run Initial Commands:
+* sudo su -
+* apt update -y
+* java --version
+
+Step 3: Install Jenkins:
+* Open a new web page and navigate to Jenkins.io.
+* Select "Installing Jenkins" and then the Linux option.
+* Copy the commad 
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian/jenkins.io-2023.key
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+  <https://pkg.jenkins.io/debian binary/> | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins.
+
+Install and Start Jenkins:
+* systemctl start jenkins
+* systemctl status jenkins
+
+Step 4: Access the Jenkins Server
+* Locate the public IP address of your Jenkins instance.
+* Open Jenkins in Your Browser.
+* Paste the public IP followed by :8080 in a new web browser tab.
+* This will connect you to the Jenkins server interface.
+* Go to the Jenkins terminal, copy the initial admin password using sudo cat /var/lib/jenkins/secrets/initialAdminPassword.
+* And paste it into the Jenkins server web interface to unlock it.
+
+
